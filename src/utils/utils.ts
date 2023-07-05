@@ -31,7 +31,7 @@ export const getError = (error: string | Error | any): string => {
 /**
  * This function use for waiting ms time. This is promise function
  * @param ms milliseconds
- * @param callback callback function, can be a promise 
+ * @param callback callback function, can be a promise
  */
 export const callbackWaiting = async (
   ms: number = 1000,
@@ -43,4 +43,18 @@ export const callbackWaiting = async (
     }, ms);
   });
   await callback();
+};
+
+/**
+ * This function return random in range a and b
+ * @param a number
+ * @param b number
+ * @returns number
+ */
+export const randomInRange = (a: number, b: number) => {
+  if (a > b) {
+    [a, b] = [b, a]; // Đảo giá trị nếu a lớn hơn b
+  }
+
+  return Math.floor(Math.random() * (b - a + 1)) + a;
 };

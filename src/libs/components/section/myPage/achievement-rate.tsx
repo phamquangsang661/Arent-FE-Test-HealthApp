@@ -1,11 +1,9 @@
 import { useMemo } from "react"
 import { CirclePercentage } from "../../graph"
+import { randomInRange } from "@utils/utils"
 
-export interface AchievementRate {
-
-}
-export const AchievementRate = ({ }: AchievementRate) => {
-    const percentage = useMemo(() => { return 75 }, [])
+export const AchievementRate = () => {
+    const percentage = useMemo(() => { return randomInRange(10, 100) }, [])
     return <div className="md:w-[990px] h-[312px] relative achievement-rate flex justify-center items-center">
 
         <div className="absolute top-0 left-0 w-full h-full z-10 increase-brightness ">
@@ -20,8 +18,5 @@ export const AchievementRate = ({ }: AchievementRate) => {
                 </p>
             </CirclePercentage>
         </div>
-
     </div>
 }
-
-//

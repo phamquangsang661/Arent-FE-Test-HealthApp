@@ -1,3 +1,4 @@
+import { api } from '@utils/api';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -36,7 +37,34 @@ export const BodyWeighGraph = () => {
             newLabels.push(labels[thisMonth + i < 12 ? thisMonth + i : (thisMonth + i) % 12])
         }
         return newLabels
-    }, [])
+    }, []);
+    const { data, isFetched, isError } = api.bodyHistory.getBodyHistories.useQuery();
+    const convertDatasetForChart = useMemo(() => {
+        const init = [{
+            label: 'Body weight',
+            data: [],
+            borderWidth: 3,
+            borderColor: '#8FE9D0',
+            backgroundColor: '#8FE9D0',
+        },
+        {
+            label: 'Body fat',
+            data: [],
+            borderWidth: 3,
+            borderColor: '#FFCC21',
+            backgroundColor: '#FFCC21',
+        }]
+        if (isFetched && !isError && data && data.data) {
+            data.data.forEach((item) => {
+                (init[0]?.data as number[]).push(item.weight);
+                (init[1]?.data as number[]).push(item.fat);
+            })
+        }
+        return init
+    }, [isFetched, data, isError])
+
+
+
     return <div className="w-full h-fit md:h-[312px] flex justify-center px-8 md:px-0 bg-dark-600 pb-[19px] pt-3"><Line options={{
         responsive: true,
         scales: {
@@ -55,7 +83,7 @@ export const BodyWeighGraph = () => {
                     color: "white",
                     font: {
                         family: "Hiragino",
-                        size:8
+                        size: 8
                     }
                 }
             },
@@ -73,22 +101,7 @@ export const BodyWeighGraph = () => {
         },
     }} data={{
         labels: last12Month,
-        datasets: [
-            {
-                label: 'Body weight',
-                data: [100, 200, 400, 10000],
-                borderWidth: 3,
-                borderColor: '#8FE9D0',
-                backgroundColor: '#8FE9D0',
-            },
-            {
-                label: 'Body fat',
-                data: [300, 100, 1000, 10000],
-                borderWidth: 3,
-                borderColor: '#FFCC21',
-                backgroundColor: '#FFCC21',
-            },
-        ],
+        datasets: convertDatasetForChart,
     }} />
     </div>
 }

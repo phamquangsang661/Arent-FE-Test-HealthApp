@@ -1,7 +1,6 @@
 'use client';
 import { motion } from 'framer-motion'
 import dayjs from "dayjs"
-import { useMemo, useState } from "react"
 import { ButtonPrimary } from '../../button/button-primary';
 import { api } from '@utils/api';
 import { useAuth } from '@hooks';
@@ -18,7 +17,6 @@ export const MealHistory = ({ filter }: MealHistory) => {
         data,
         hasNextPage,
         fetchNextPage,
-        isFetchingNextPage,
     } = api.mealHistory.getMealHistories.useInfiniteQuery(
         {
             paging: {
@@ -32,8 +30,7 @@ export const MealHistory = ({ filter }: MealHistory) => {
         },
     );
 
-
-    // Maximum 8 item
+    // Maximum 8 item per page
     return <>
         {(!data?.pages || data?.pages?.length == 0 || data?.pages?.[0]?.data?.mealHistories.length == 0)
             &&
