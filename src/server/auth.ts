@@ -5,8 +5,12 @@ import {
   type NextAuthOptions,
   type DefaultSession,
 } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 // import { env } from "@source/env.mjs";
 import { prisma } from "@server/db";
+import { User } from "@prisma/client";
+import { checkHashPassword, hashPassword } from "./libs/helpers";
+import dayjs from "dayjs";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -36,25 +40,84 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
+    session: ({ session, token }) => {
+      const user: User = token.user as User;
+
+      return {
+        ...session,
+        user: {
+          email: user.email,
+          id: user.id,
+        },
+      };
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user;
+      }
+      return token;
+    },
+  },
+
+  adapter: PrismaAdapter(prisma),
+  session: {
+    strategy: "jwt",
+    maxAge: 7 * 24 * 60 * 60, // 7 days
+    updateAge: 60 * 60, // 1 hours
+  },
+  jwt: {
+    secret: process.env.JWT_SECRET,
+  },
+  providers: [
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials, req) {
+        const user = await prisma.user.findFirst({
+          where: {
+            email: credentials?.email,
+          },
+          select: {
+            id: true,
+            password: true,
+          },
+        });
+
+        if (!user) {
+          // Sign up new user if don't have any user, only for testing purpose
+          const hash = await hashPassword(credentials?.password ?? "");
+          const userCreated = await prisma.user.create({
+            data: {
+              email: credentials?.email,
+              password: hash,
+              emailVerified: dayjs().toISOString(), //Only for testing case
+            },
+            select: {
+              id: true,
+              email: true,
+            },
+          });
+          return userCreated;
+        }
+
+        let userHashPassword = user?.password || "";
+
+        let checkHash = await checkHashPassword(
+          credentials?.password || "",
+          userHashPassword
+        );
+
+        if (checkHash) {
+          user.password = "";
+          return user;
+        } else {
+          return null;
+        }
       },
     }),
-  },
-  adapter: PrismaAdapter(prisma),
-  providers: [
-    /**
-     * ...add more providers here.
-     *
-     * Most other providers require a bit more work than the Discord provider. For example, the
-     * GitHub provider requires you to add the `refresh_token_expires_in` field to the Account
-     * model. Refer to the NextAuth.js docs for the provider you want to use. Example:
-     *
-     * @see https://next-auth.js.org/providers/github
-     */
   ],
 };
 

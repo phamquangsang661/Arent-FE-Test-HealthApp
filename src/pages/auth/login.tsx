@@ -7,6 +7,8 @@ import { useFormik } from "formik";
 import { loginValidation } from "@source/libs/validations/auth";
 import { toast } from "react-toastify";
 import { FormView } from "@components";
+import { signIn } from "next-auth/react";
+import { callbackWaiting } from "@utils/utils";
 
 export default function Login() {
     const { isAuth } = useAuth({
@@ -24,7 +26,24 @@ export default function Login() {
         validationSchema: loginValidation,
         onSubmit: async (values) => {
             startLoading()
-
+            try {
+                await signIn("credentials", {
+                    email: values.email,
+                    password: values.password,
+                    redirect: false,
+                })
+                //Quick Success notify
+                toast.success("正常にログインしました")
+                //Wait one sec before redirect
+                await callbackWaiting(1000, () => {
+                    // Success
+                    router.push(redirectUrl);
+                    stopLoading();
+                })
+            } catch (err) {
+                toast.error("ログインに失敗しました")
+                stopLoading();
+            }
         }
     })
     const { isShowError, setIsError } = useFormikError({
@@ -40,7 +59,7 @@ export default function Login() {
                 <div className="font-extrabold text-center text-4xl pb-6 font-primary text-primary-500 ">
                     ログインページ
                 </div>
-                <div className="w-full  md:min-w-[300px] flex flex-col gap-4" >
+                <div className="w-full  md:w-[300px] flex flex-col gap-4" >
                     <div className="ui left icon input w-full justify-center ">
                         <input
                             type="text"

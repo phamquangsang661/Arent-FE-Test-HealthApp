@@ -12,7 +12,7 @@ export const LoadingOverlay = ({
     <>
       {
         isLoading && <Dimmer active >
-          {/* @ts-expect-error Loding Component */}
+          {/* @ts-expect-error Loading Component */}
           <Loader size="huge" className="!text-primary-500 !font-hiragino after:!border-[#EA6C00_transparent_transparent]">{message}</Loader>
         </Dimmer>
       }
