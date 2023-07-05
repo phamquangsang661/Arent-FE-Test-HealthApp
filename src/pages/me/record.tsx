@@ -1,6 +1,5 @@
 import {
     BodyGraphRecord,
-    ButtonPrimary,
     Layout,
     MyDiary,
     MyExerciseRecord,
@@ -30,7 +29,6 @@ export default function MyRecord() {
             <BodyGraphRecord />
             <MyExerciseRecord />
             <MyDiary />
-            <ButtonPrimary className="md:!w-[296px] mx-auto mt-[-26px]">自分の日記をもっと見る</ButtonPrimary>
         </Layout>
     );
 }
