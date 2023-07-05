@@ -9,7 +9,7 @@ export const ButtonPrimary = ({ children, className = "", ...props }: ButtonPrim
         {...props}
         className={`
         bg-gradient-primary rounded-md py-[14px] px-1 w-full 
-        text-[18px] leading-[26px] text-light font-hiragino font-light
+        text-[18px] leading-[26px] text-light font-hiragino font-light hover:opacity-80
         ${className}`}
     >
         {children}

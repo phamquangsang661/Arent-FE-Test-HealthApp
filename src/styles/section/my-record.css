@@ -1,0 +1,18 @@
+.my-exercise-scroll-custom::-webkit-scrollbar {
+    width: 6px;
+}
+
+.my-exercise-scroll-custom::-webkit-scrollbar-track,
+.my-exercise-scroll-custom-vertical::-webkit-scrollbar-track {
+    background-color: #777777;
+    border-radius: 25px;
+    background-clip: padding-box;
+}
+
+
+
+.my-exercise-scroll-custom::-webkit-scrollbar-thumb,
+.my-exercise-scroll-custom-vertical::-webkit-scrollbar-thumb {
+    border-radius: 25px;
+    background-color: #FFCC21;
+}

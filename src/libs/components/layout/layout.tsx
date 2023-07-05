@@ -26,9 +26,9 @@ export const Layout = ({
             <meta name="description" content={content} />
             <link rel="icon" href={faviconUrl} />
         </Head>
-        <main className={`flex min-h-screen flex-col  items-center justify-center ${mainClassName}`}>
+        <main className={`flex min-h-screen flex-col items-center justify-center ${mainClassName}`}>
             <Header />
-            <div className={`flex-grow ${className}`}>{children}</div>
+            <div className={`flex-grow  ${className}`}>{children}</div>
             <Footer />
         </main>
     </>

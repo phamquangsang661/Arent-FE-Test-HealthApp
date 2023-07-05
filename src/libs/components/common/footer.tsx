@@ -3,7 +3,7 @@ export interface Footer {
     className?: string
 }
 export const Footer = ({ className = "" }: Footer) => {
-    return <div className={`px-40 py-[56px] flex flex-row gap-[45px] bg-dark-500 w-full
+    return <div className={`px-10 md:px-40 py-[56px] flex flex-row gap-[45px] bg-dark-500 w-full
     text-light leading-4 tracking-[0.033px] text-[11px] font-hiragino  font-light
     ${className}`}>
         {/* @ts-expect-error Link Component */}

@@ -14,6 +14,7 @@ export * from "./icon";
 
 //button
 export * from "./button/button-primary";
+export * from "./button/button-graph-record";
 
 //Vector
 export * from "./vector/logo";
@@ -22,6 +23,11 @@ export * from "./vector/hexagon";
 //Section
 //My page
 export * from "./section/myPage/index";
+//My record
+export * from "./section/myRecord/index";
 
 // Graph
 export * from "./graph/circle-percentage";
+
+//Rich text
+export * from "./rich-text/rich-text-render";
