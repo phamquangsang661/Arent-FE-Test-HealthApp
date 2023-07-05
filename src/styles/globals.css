@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "semantic-ui-css/semantic.min.css";
 
 @layer base {
     @font-face {

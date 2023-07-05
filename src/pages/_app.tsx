@@ -1,8 +1,11 @@
 import { type Session } from "next-auth";
-import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
-import { api } from "~/utils/api";
-import "~/styles/globals.css";
+import { SessionProvider } from "next-auth/react";
+import { ComponentMiddleware } from "@components";
+import { api } from "@utils/api";
+import "@styles/globals.css";
+
+
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -10,7 +13,10 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <ComponentMiddleware>
+        {/* @ts-expect-error Server Component */}
+        <Component {...pageProps} />
+      </ComponentMiddleware>
     </SessionProvider>
   );
 };

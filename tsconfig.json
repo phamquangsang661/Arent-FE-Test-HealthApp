@@ -22,9 +22,6 @@
     "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./src/*"
-      ],
       "@components": [
         "./src/libs/components/index.ts"
       ],
@@ -37,6 +34,9 @@
       "@utils/*": [
         "./src/utils/*"
       ],
+      "@stores": [
+        "./src/libs/stores/index.ts"
+      ],
       "@helpers/*": [
         "./src/libs/helpers/*"
       ],
@@ -48,6 +48,12 @@
       ],
       "@server/lib/*": [
         "./src/server/libs/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@source/*":[
+        "./src/*"
       ]
     },
     "typeRoots": [
