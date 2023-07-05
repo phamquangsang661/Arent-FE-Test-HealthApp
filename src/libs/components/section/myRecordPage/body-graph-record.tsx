@@ -13,6 +13,8 @@ import dayjs from 'dayjs';
 import { useMemo, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { ButtonGraphRecord } from '../../button/button-graph-record';
+import { api } from '@utils/api';
+import { toast } from 'react-toastify';
 
 ChartJS.register(
     Filler,
@@ -29,7 +31,8 @@ ChartJS.register(
 const labels = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', "8月", "9月", "10月", "11月", "12月"];
 type FilterType = "day" | "week" | "month" | "year"
 export const BodyGraphRecord = () => {
-    const [selectedFilter, setSelectedFilter] = useState<FilterType>("year")
+    //Only support month for now
+    const [selectedFilter, setSelectedFilter] = useState<FilterType>("month")
     const last12Month = useMemo(() => {
         const newLabels = []
         const thisMonth = dayjs().month();
@@ -38,8 +41,36 @@ export const BodyGraphRecord = () => {
         }
         return newLabels
     }, [])
+    const { data, isFetched, isError } = api.bodyHistory.getBodyHistories.useQuery();
+    const convertDatasetForChart = useMemo(() => {
+        const init = [{
+            label: 'Body weight',
+            data: [],
+            borderWidth: 3,
+            borderColor: '#8FE9D0',
+            backgroundColor: '#8FE9D0',
+        },
+        {
+            label: 'Body fat',
+            data: [],
+            borderWidth: 3,
+            borderColor: '#FFCC21',
+            backgroundColor: '#FFCC21',
+        }]
+        if (isFetched && !isError && data && data.data) {
+            data.data.forEach((item) => {
+                (init[0]?.data as number[]).push(item.weight);
+                (init[1]?.data as number[]).push(item.fat);
+            })
+        }
+        return init
+    }, [isFetched, data, isError])
+
     const onClickFilter = (filterName: FilterType) => () => {
-        setSelectedFilter(filterName)
+        if (filterName != "month") {
+            return toast.error("現在は月表示のみをサポートしています!")
+        } else
+            setSelectedFilter(filterName)
     }
 
     return <div id="body-record" className="w-full h-[304px] relative mx-auto px-8 md:px-[47px] bg-dark-500 pb-[49px] pt-[54px]">
@@ -89,22 +120,7 @@ export const BodyGraphRecord = () => {
             },
         }} data={{
             labels: last12Month,
-            datasets: [
-                {
-                    label: 'Body weight',
-                    data: [100, 200, 400, 10000],
-                    borderWidth: 3,
-                    borderColor: '#8FE9D0',
-                    backgroundColor: '#8FE9D0',
-                },
-                {
-                    label: 'Body fat',
-                    data: [300, 100, 1000, 10000],
-                    borderWidth: 3,
-                    borderColor: '#FFCC21',
-                    backgroundColor: '#FFCC21',
-                },
-            ],
+            datasets: convertDatasetForChart,
         }} />
     </div>
 }
