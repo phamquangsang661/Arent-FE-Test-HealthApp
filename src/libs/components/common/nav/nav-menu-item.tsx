@@ -35,7 +35,7 @@ export const NavMenuItem = ({ className }: NavMenuItem) => {
         <motion.nav
             initial={false}
             animate={isOpen ? "open" : "closed"}
-            className="relative"
+            className={`relative ${className}`}
             ref={navRef}
         >
             {/* @ts-expect-error motion nav Component */}
