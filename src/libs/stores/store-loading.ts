@@ -13,7 +13,7 @@ type OnOpenLoading = {
 export const useStoreLoading = create<UseStoreLoading>((set, get) => ({
   isLoading: false,
   messageLoading: "",
-  startLoading: ({ message }: OnOpenLoading = { message: "Loading..." }) =>
+  startLoading: ({ message }: OnOpenLoading = { message: "読み込み中..." }) =>
     set((state) => {
       return {
         ...state,

@@ -3,9 +3,6 @@ import { toFormikValidationSchema } from "zod-formik-adapter";
 
 export const loginValidation = toFormikValidationSchema(
   z.object({
-    name: z
-      .string({ required_error: "名前を空白のままにすることはできません" })
-      .min(1, "名前を空白のままにすることはできません"),
     email: z
       .string({
         required_error: "メールアドレスを空白のままにすることはできません",

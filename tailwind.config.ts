@@ -1,5 +1,4 @@
 import { type Config } from "tailwindcss";
-
 export default {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -24,6 +23,7 @@ export default {
     fontFamily: {
       primary: ["NotoSansJP", "Roboto", "sans-serif"],
       secondary: ["Inter", "sans-serif"],
+      hiragino: ["Hiragino", "sans-serif"],
     },
     extend: {},
   },
