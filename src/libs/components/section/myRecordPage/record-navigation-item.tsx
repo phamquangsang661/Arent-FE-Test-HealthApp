@@ -15,7 +15,7 @@ export const RecordNavigationItem = ({
     href = "#"
 }: RecordNavigationItem) => {
     return <>
-        {/* @ts-expect-error motion motion Component */}
+       
         <motion.a
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}

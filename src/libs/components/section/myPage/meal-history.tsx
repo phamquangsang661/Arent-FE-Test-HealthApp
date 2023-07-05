@@ -4,6 +4,7 @@ import dayjs from "dayjs"
 import { ButtonPrimary } from '../../button/button-primary';
 import { api } from '@utils/api';
 import { useAuth } from '@hooks';
+import { Fragment } from 'react';
 
 export interface MealHistory {
     filter: "all" | "Morning" | "Lunch" | "Dinner" | "Snack"
@@ -39,8 +40,7 @@ export const MealHistory = ({ filter }: MealHistory) => {
 
             {data?.pages.map((page) => {
                 return page.data?.mealHistories.map((item) => (
-                    <>
-                        {/* @ts-expect-error motion motion Component */}
+                    <Fragment key={item.id}>
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -55,7 +55,7 @@ export const MealHistory = ({ filter }: MealHistory) => {
                             </div>
                         </motion.div>
 
-                    </>
+                    </Fragment>
                 ));
             })}
 

@@ -52,7 +52,7 @@ const Circle = ({ color, percentage = 0, mainCircle = false }: {
                 <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
                     <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur" />
                     <feOffset in="blur" dx="0" dy="0" result="offsetBlur" />
-                    <feFlood flood-color="#EA6C00" result="glowColor" />
+                    <feFlood floodColor="#EA6C00" result="glowColor" />
                     <feComposite in="glowColor" in2="offsetBlur" operator="in" result="coloredBlur" />
                     <feMerge>
                         <feMergeNode in="coloredBlur" />

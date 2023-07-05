@@ -5,6 +5,7 @@ import { RichTextRender } from "../../rich-text/rich-text-render";
 import { useAuth } from '@hooks';
 import { api } from '@utils/api';
 import { ButtonPrimary } from '../../button/button-primary';
+import { Fragment } from 'react';
 
 export const MyDiary = () => {
     const { isAuth } = useAuth({
@@ -36,8 +37,7 @@ export const MyDiary = () => {
             <div className="grid gird-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                 {data?.pages.map((page) => {
                     return page.data?.diaries.map((item) => (
-                        <>
-                            {/* @ts-expect-error motion motion Component */}
+                        <Fragment key={item.id}>
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
@@ -51,7 +51,7 @@ export const MyDiary = () => {
                                     content={item.content.slice(0, 105) + (item.content.length > 104 ? ` ...` : "")}//max 104 char
                                 />
                             </motion.div>
-                        </>
+                        </Fragment>
                     ));
                 })}
             </div>

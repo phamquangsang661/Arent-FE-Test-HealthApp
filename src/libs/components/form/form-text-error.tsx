@@ -11,7 +11,7 @@ export const FormTextError = ({ children, className = "", header = "", isShow = 
     return <>
         {isShow && <Message negative className={className}>
             {header != "" && <>
-                {/* @ts-expect-error Message header */}
+              
                 <Message.Header>{header}</Message.Header>
             </>}
             {children}

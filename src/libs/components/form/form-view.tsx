@@ -14,13 +14,13 @@ export const FormView = ({
 }: FormViewInterface & Partial<FormProps>) => {
     return (
         <>
-            {/* @ts-expect-error Form Component */}
+           
             <Form
                 className={className}
                 onSubmit={formik.handleSubmit}
                 {...FormProps}
             >
-                {/* @ts-expect-error Formik provider Component */}
+                
                 <FormikProvider value={formik}>{children}</FormikProvider>
             </Form >
         </>

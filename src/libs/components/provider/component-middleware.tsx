@@ -15,7 +15,7 @@ export const ComponentMiddleware = ({ children }: ComponentMiddleware) => {
     return (
         <>
             <LoadingOverlay isLoading={isLoading} message={messageLoading} />
-            {/* @ts-expect-error Server Component */}
+           
             <ToastContainer
                 position="bottom-right"
                 autoClose={3000}

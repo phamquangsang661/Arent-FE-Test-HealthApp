@@ -6,8 +6,14 @@ import {
     RecordNavigationItem,
 }
     from "@components";
+import { useAuth } from "@hooks";
 
 export default function MyRecord() {
+    const { isAuth } = useAuth({
+        redirect: true
+    })
+    if (!isAuth)
+        return null
     return (
         <Layout title="My record" activePage="record-page" content="My record" className="flex flex-col gap-[56px] pt-[56px] pb-16  md:px-[160px]">
             <div className="flex flex-col sm:flex-row  sm:justify-between">

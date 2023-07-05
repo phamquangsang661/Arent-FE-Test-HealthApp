@@ -31,19 +31,19 @@ export const NavMenuItem = ({ className }: NavMenuItem) => {
     }
 
     return <>
-        {/* @ts-expect-error motion nav Component */}
+     
         <motion.nav
             initial={false}
             animate={isOpen ? "open" : "closed"}
             className={`relative ${className}`}
             ref={navRef}
         >
-            {/* @ts-expect-error motion nav Component */}
+         
             <motion.div className="absolute top-[47px] z-[999] right-[-35px] md:top-[32px] md:right-[3px] w-screen md:w-[280px] overflow-hidden bg-gray-400" variants={{
                 open: { height: "fit-content" },
                 closed: { height: 0 },
             }}>
-                <NavMenuItemInside >自分の記録</NavMenuItemInside>
+                <NavMenuItemInside href="/me/record">自分の記録</NavMenuItemInside>
                 <NavMenuItemInside >体重グラフ</NavMenuItemInside>
                 <NavMenuItemInside >目標</NavMenuItemInside>
                 <NavMenuItemInside >選択中のコース</NavMenuItemInside>

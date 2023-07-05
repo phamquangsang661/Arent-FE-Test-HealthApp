@@ -7,7 +7,7 @@ export interface MyPageFilters {
 }
 export const MyPageFilters = ({ onFilter }: MyPageFilters) => {
     return <>
-        {/* @ts-expect-error motion motion Component */}
+       
         <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "fit-content", opacity: 1 }}

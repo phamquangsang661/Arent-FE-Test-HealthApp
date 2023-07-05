@@ -5,6 +5,7 @@ import dayjs from "dayjs"
 import { RichTextRender } from '../../rich-text/rich-text-render';
 import { api } from '@utils/api';
 import { ButtonPrimary } from '../../button/button-primary';
+import { Fragment } from 'react';
 
 export const ColumnItems = () => {
 
@@ -30,8 +31,7 @@ export const ColumnItems = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 mx-auto">
             {data?.pages.map((page) => {
                 return page.data?.columns.map((item) => (
-                    <>
-                        {/* @ts-expect-error motion motion Component */}
+                    <Fragment key={item.id}>
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -54,10 +54,10 @@ export const ColumnItems = () => {
                                 content={item.content.slice(0, 30) + (item.content.length > 29 ? ` ...` : "")}//max 104 char
                             />
                             <div className="flex flex-row flex-wrap gap-3 text-[12px] font-hiragino font-light leading-[22px] tracking-[0.06px]">
-                                {item.tags.map(tag => <a href={"#" + tag.slug} className="link  !text-primary-400 hover:opacity-70 transition-all hover:scale-[1.2]" >#{tag.name}</a>)}
+                                {item.tags.map(tag => <a key={tag.id} href={"#" + tag.slug} className="link  !text-primary-400 hover:opacity-70 transition-all hover:scale-[1.2]" >#{tag.name}</a>)}
                             </div>
                         </motion.div>
-                    </>
+                    </Fragment>
                 ));
             })}
         </div>
