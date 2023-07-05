@@ -24,13 +24,18 @@ export const Header = ({ className = "" }: Header) => {
                     チャレンジ
                 </NavItem>
                 <NavItem href="/" >
-                    <IconInfo />
+                    <IconInfo >
+                        <div
+                            className="bg-primary-500 absolute top-0 right-[-8px] rounded-[50%] w-4 h-4 leading-3 font-secondary text-[10px] flex items-center justify-center">
+                            1
+                        </div>
+                    </IconInfo>
                     お知らせ
                 </NavItem>
             </div>
 
             <NavMenuItem />
-  
+
         </div>
     </div>
 }

@@ -1,17 +1,23 @@
+import { ReactNode } from "react";
+
 export interface IconInfo {
     className?: string;
-    size?: number
+    size?: number;
+    children?: ReactNode
 }
-export const IconInfo = ({ className = "", size = 32 }: IconInfo) => {
-    return <svg
-        width={size}
-        height={size}
-        viewBox="0 0 32 32"
-        className={`fill-primary-400 ${className} `}
-        fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg">
-        <rect opacity="0.01" width="32" height="32" />
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M28.5 25.2975H16.0722L8.07178 31V25.2975H3.5V3H28.5V25.2975H28.5ZM26.2142 5.27186H5.78577V23.0256H10.3576V26.5755L15.3374 23.0256H26.2142V5.27186ZM17.3634 13.391V19.9249H14.7335V13.391H17.3634ZM16.048 11.4314C16.9555 11.4314 17.6913 10.6998 17.6913 9.79798C17.6913 8.896 16.9555 8.16444 16.048 8.16444C15.1405 8.16444 14.4044 8.89601 14.4044 9.79798C14.4044 10.6998 15.1405 11.4314 16.048 11.4314Z" />
-    </svg>
+export const IconInfo = ({ className = "", size = 32, children }: IconInfo) => {
+    return <div className={`relative ${className} `}>
+        <svg
+            width={size}
+            height={size}
+            viewBox="0 0 32 32"
+            className={`fill-primary-400 `}
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg">
+            <rect opacity="0.01" width="32" height="32" />
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M28.5 25.2975H16.0722L8.07178 31V25.2975H3.5V3H28.5V25.2975H28.5ZM26.2142 5.27186H5.78577V23.0256H10.3576V26.5755L15.3374 23.0256H26.2142V5.27186ZM17.3634 13.391V19.9249H14.7335V13.391H17.3634ZM16.048 11.4314C16.9555 11.4314 17.6913 10.6998 17.6913 9.79798C17.6913 8.896 16.9555 8.16444 16.048 8.16444C15.1405 8.16444 14.4044 8.89601 14.4044 9.79798C14.4044 10.6998 15.1405 11.4314 16.048 11.4314Z" />
+        </svg>
+        {children}
+    </div>
 
 }
