@@ -33,9 +33,7 @@ export const Header = ({ className = "" }: Header) => {
                     お知らせ
                 </NavItem>
             </div>
-
             <NavMenuItem />
-
         </div>
     </div>
 }

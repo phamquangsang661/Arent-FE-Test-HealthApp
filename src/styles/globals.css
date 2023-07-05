@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 @import "semantic-ui-css/semantic.min.css";
+/* Import other module CSS */
+@import './section/my-page.css';
 
 @layer base {
     @font-face {

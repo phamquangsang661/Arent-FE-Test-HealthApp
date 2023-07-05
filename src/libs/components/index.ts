@@ -17,3 +17,11 @@ export * from "./button/button-primary";
 
 //Vector
 export * from "./vector/logo";
+export * from "./vector/hexagon";
+
+//Section
+//My page
+export * from "./section/myPage/index";
+
+// Graph
+export * from "./graph/circle-percentage";
