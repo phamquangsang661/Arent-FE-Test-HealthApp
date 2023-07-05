@@ -67,13 +67,14 @@ model Column {
     id        String       @id @default(uuid())
     createdAt DateTime
     content   String
+    image     String
     tags      ColumnTags[]
 }
 
 model ColumnTags {
     id       String  @id @default(uuid())
     name     String
-    slug     String
+    slug     String  @unique
     column   Column? @relation(fields: [columnId], references: [id])
     columnId String?
 }
