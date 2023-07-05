@@ -18,7 +18,7 @@ export const mealHistoryRouter = createTRPCRouter({
           .nullish(),
       })
     )
-    .mutation(async ({ input, ctx }) => {
+    .query(async ({ input, ctx }) => {
       return await errorCatchTRPC(async () => {
         const userId = ctx.session.user.id;
         const { paging, cursor, type } = input;
