@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import { Header } from "../common/header";
 import { Footer } from "../common/footer";
 import setting from "@constants/setting";
+import { ButtonBackToTop } from "../common/button-back-to-top";
 
 export interface Layout {
     title?: string;
@@ -30,7 +31,10 @@ export const Layout = ({
         </Head>
         <main className={`flex min-h-screen flex-col items-center justify-center ${mainClassName}`}>
             <Header activePage={activePage} />
-            <div className={`flex-grow  ${className}`}>{children}</div>
+            <div className={`flex-grow  ${className}`}>
+                {children}
+                <ButtonBackToTop />
+            </div>
             <Footer />
         </main>
     </>

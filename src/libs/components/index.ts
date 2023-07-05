@@ -33,3 +33,6 @@ export * from "./graph/circle-percentage";
 
 //Rich text
 export * from "./rich-text/rich-text-render";
+
+//Common
+export * from "./common/button-back-to-top";
