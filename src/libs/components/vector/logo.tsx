@@ -1,12 +1,20 @@
+import { useRouter } from "next/router";
+
 export interface Logo {
     className?: string;
-    size?: number
+    size?: number;
+    href?: string
 }
-export const Logo = ({ size = 40, className = "" }: Logo) => {
+export const Logo = ({ size = 40, className = "", href = "/" }: Logo) => {
+    const router = useRouter()
+    const onClick = () => {
+        router.push(href)
+    }
     return <svg
+        onClick={onClick}
         width={(109 - 40) + size}
         height={size}
-        className={`fill-primary-400 ${className} `}
+        className={`fill-primary-400 cursor-pointer ${className} `}
         viewBox="0 0 109 40"
         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <g id="&#227;&#130;&#176;&#227;&#131;&#171;&#227;&#131;&#188;&#227;&#131;&#151; 138" clip-path="url(#clip0_33451_176)">

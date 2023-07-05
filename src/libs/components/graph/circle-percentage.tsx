@@ -35,17 +35,32 @@ const Circle = ({ color, percentage = 0, mainCircle = false }: {
     const circ = 2 * Math.PI * r;
     const strokePct = ((100 - percentage) * circ) / 100; // where stroke will start, e.g. from 15% to 100%.
     return (
-        <circle
-            r={r}
-            cx={100}
-            cy={100}
-            transform={`rotate(-90 ${"100 100"})`}
-            stroke={strokePct !== circ ? color : ""} // remove color as 0% sets full circumference
-            strokeWidth={"3px"}
-            fill="transparent"
-            strokeDasharray={circ}
-            strokeDashoffset={percentage ? strokePct : 0}
-        ></circle>
+        <>
+            <circle
+                r={r}
+                cx={100}
+                cy={100}
+                filter="url(#glow)"
+                transform={`rotate(-90 ${"100 100"})`}
+                stroke={strokePct !== circ ? color : ""} // remove color as 0% sets full circumference
+                strokeWidth={"3px"}
+                fill="transparent"
+                strokeDasharray={circ}
+                strokeDashoffset={percentage ? strokePct : 0}
+            ></circle>
+            <defs>
+                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur" />
+                    <feOffset in="blur" dx="0" dy="0" result="offsetBlur" />
+                    <feFlood flood-color="#EA6C00" result="glowColor" />
+                    <feComposite in="glowColor" in2="offsetBlur" operator="in" result="coloredBlur" />
+                    <feMerge>
+                        <feMergeNode in="coloredBlur" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+            </defs>
+        </>
     );
 };
 

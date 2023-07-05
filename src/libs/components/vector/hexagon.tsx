@@ -6,7 +6,7 @@ export interface Hexagon {
     onClick?: () => void
 }
 export const Hexagon = ({ className = "", children, onClick = () => { } }: Hexagon) => {
-    return <div className={`relative w-fit h-fit ${className} px-[10px]`} onClick={onClick}>
+    return <div className={`relative w-fit h-fit ${className} px-[10px] transition-all hover:scale-[1.2]`} onClick={onClick}>
         <svg width="116" height="134" viewBox="0 0 116 134" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path id="&#227;&#131;&#145;&#227;&#130;&#185; 48" d="M0 33.5L58 0L116 33.5V100.5L58 134L0 100.5L0 33.5Z" fill="url(#paint0_linear_33451_933)" />
             <defs>
@@ -16,7 +16,7 @@ export const Hexagon = ({ className = "", children, onClick = () => { } }: Hexag
                 </linearGradient>
             </defs>
         </svg>
-        <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center cursor-pointer hover:opacity-60">{children}</div>
+        <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center cursor-pointer hover:opacity-80">{children}</div>
     </div>
 
 }

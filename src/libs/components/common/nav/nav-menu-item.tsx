@@ -39,7 +39,7 @@ export const NavMenuItem = ({ className }: NavMenuItem) => {
             ref={navRef}
         >
             {/* @ts-expect-error motion nav Component */}
-            <motion.div className="absolute top-[47px] right-[-35px] md:top-[32px] md:right-[3px] w-screen md:w-[280px] overflow-hidden bg-gray-400" variants={{
+            <motion.div className="absolute top-[47px] z-[999] right-[-35px] md:top-[32px] md:right-[3px] w-screen md:w-[280px] overflow-hidden bg-gray-400" variants={{
                 open: { height: "fit-content" },
                 closed: { height: 0 },
             }}>
@@ -47,7 +47,7 @@ export const NavMenuItem = ({ className }: NavMenuItem) => {
                 <NavMenuItemInside >体重グラフ</NavMenuItemInside>
                 <NavMenuItemInside >目標</NavMenuItemInside>
                 <NavMenuItemInside >選択中のコース</NavMenuItemInside>
-                <NavMenuItemInside >コラム一覧</NavMenuItemInside>
+                <NavMenuItemInside href="/column">コラム一覧</NavMenuItemInside>
                 <NavMenuItemInside >設定</NavMenuItemInside>
             </motion.div>
             {!isOpen && <div className="cursor-pointer" onClick={onOpen}>

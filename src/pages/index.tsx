@@ -28,7 +28,7 @@ export default function MyPage() {
       </div>
       <MyPageFilters onFilter={onClickFilter} />
       <MealHistory filter={selectedFilter} />
-      <ButtonPrimary className="md:!w-[296px] mx-auto mt-1">記録をもっと見る</ButtonPrimary>
+      <ButtonPrimary className="!w-[80%] md:!w-[296px] mx-auto mt-1">記録をもっと見る</ButtonPrimary>
     </Layout>
   );
 }

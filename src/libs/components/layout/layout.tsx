@@ -11,12 +11,14 @@ export interface Layout {
     children?: ReactNode;
     mainClassName?: string;
     className?: string;
+    activePage?: string
 }
 export const Layout = ({
     title = "Default",
     content = "Default page",
     faviconUrl = setting.page.faviconUrl,
     children,
+    activePage = "",
     mainClassName = "",
     className = ""
 }: Layout) => {
@@ -27,7 +29,7 @@ export const Layout = ({
             <link rel="icon" href={faviconUrl} />
         </Head>
         <main className={`flex min-h-screen flex-col items-center justify-center ${mainClassName}`}>
-            <Header />
+            <Header activePage={activePage} />
             <div className={`flex-grow  ${className}`}>{children}</div>
             <Footer />
         </main>

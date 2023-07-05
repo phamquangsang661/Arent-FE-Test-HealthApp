@@ -2,7 +2,7 @@ import { ButtonPrimary, ColumnItems, Layout, RecommendedColumnItem } from "@comp
 
 export default function ColumnPage() {
     return <Layout title="Column page" content="Column page" className="flex flex-col gap-[56px] pt-[56px] pb-16 md:px-40">
-        <div className="w-full flex flex-coll gap-8 md:flex-row justify-between">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:flex  gap-8 md:flex-row justify-between">
             <RecommendedColumnItem title="RECOMMENDED COLUMN" content="オススメ" />
             <RecommendedColumnItem title="RECOMMENDED DIET" content="ダイエット" />
             <RecommendedColumnItem title="RECOMMENDED DIET" content="美容" />

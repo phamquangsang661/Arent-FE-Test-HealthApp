@@ -19,7 +19,7 @@ export const RecordNavigationItem = ({
         <motion.a
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }} className={`bg-primary-300 p-6 ${className}`} href={href}>
+            transition={{ duration: 0.5 }} className={`bg-primary-300 p-6 transition-all hover:!scale-[1.1] ${className}`} href={href}>
             <div className="relative w-[240px] h-[240px] mx-auto">
                 <div className="absolute top-0 left-0 w-full h-full bg-dark-600 z-10"></div>
                 <img
