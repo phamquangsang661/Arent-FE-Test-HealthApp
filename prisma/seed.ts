@@ -111,6 +111,77 @@ async function main() {
     });
   }
 
+  //Generate Column tag
+  let tag1 = await prisma.columnTags
+    .create({
+      data: {
+        slug: "魚料理",
+        name: "魚料理",
+      },
+    })
+    .catch((err) => {
+      return null;
+    });
+  if (!tag1) {
+    tag1 = await prisma.columnTags.findFirst({
+      where: {
+        slug: "魚料理",
+      },
+    });
+    if (!tag1) {
+      logFunction(
+        'Can\'t get tag, or created. Please reset DB "npm run db:reset" and try again!'
+      );
+      return;
+    }
+  }
+  let tag2 = await prisma.columnTags
+    .create({
+      data: {
+        slug: "和食",
+        name: "和食",
+      },
+    })
+    .catch((err) => {
+      return null;
+    });
+  if (!tag2) {
+    tag2 = await prisma.columnTags.findFirst({
+      where: {
+        slug: "和食",
+      },
+    });
+    if (!tag2) {
+      logFunction(
+        'Can\'t get tag, or created. Please reset DB "npm run db:reset" and try again!'
+      );
+      return;
+    }
+  }
+  let tag3 = await prisma.columnTags
+    .create({
+      data: {
+        slug: "DHA",
+        name: "DHA",
+      },
+    })
+    .catch((err) => {
+      return null;
+    });
+
+  if (!tag3) {
+    tag3 = await prisma.columnTags.findFirst({
+      where: {
+        slug: "DHA",
+      },
+    });
+    if (!tag3) {
+      logFunction(
+        'Can\'t get tag, or created. Please reset DB "npm run db:reset" and try again!'
+      );
+      return;
+    }
+  }
   //Generate Meal history
   logFunction("Generating Meal History, Diary, Column, Exercise History");
   const lastDays = dayjs().add(60, "day");
@@ -149,40 +220,12 @@ async function main() {
             listUrlColumnImage?.[randomInRange(0, 7)] ??
             "/images/column-item-example-1.png",
           tags: {
-            connectOrCreate: [
-              {
-                where: {
-                  slug: "魚料理",
-                },
-                create: {
-                  slug: "魚料理",
-                  name: "魚料理",
-                },
-              },
-              {
-                where: {
-                  slug: "和食",
-                },
-                create: {
-                  slug: "和食",
-                  name: "和食",
-                },
-              },
-              {
-                where: {
-                  slug: "DHA",
-                },
-                create: {
-                  slug: "DHA",
-                  name: "DHA",
-                },
-              },
-            ],
+            connect: [{ id: tag1.id }, { id: tag2.id }, { id: tag3.id }],
           },
         },
       })
       .catch(() => {
-        logFunction("Failed for generate Exercise");
+        logFunction("Failed for generate Column");
       });
 
     await prisma.diary

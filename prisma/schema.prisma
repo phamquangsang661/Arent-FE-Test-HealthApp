@@ -72,9 +72,8 @@ model Column {
 }
 
 model ColumnTags {
-    id       String  @id @default(uuid())
-    name     String
-    slug     String  @unique
-    column   Column? @relation(fields: [columnId], references: [id])
-    columnId String?
+    id     String   @id @default(uuid())
+    name   String
+    slug   String   @unique
+    column Column[]
 }
