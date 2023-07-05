@@ -1,4 +1,4 @@
-import { ButtonPrimary, ColumnItems, Layout, RecommendedColumnItem } from "@components"
+import {  ColumnItems, Layout, RecommendedColumnItem } from "@components"
 
 export default function ColumnPage() {
     return <Layout title="Column page" content="Column page" className="flex flex-col gap-[56px] pt-[56px] pb-16 md:px-40">
@@ -9,6 +9,5 @@ export default function ColumnPage() {
             <RecommendedColumnItem title="RECOMMENDED HEALTH" content="健康" />
         </div>
         <ColumnItems />
-        <ButtonPrimary className="md:!w-[296px] mx-auto mt-[-30px]">コラムをもっと見る</ButtonPrimary>
     </Layout>
 }

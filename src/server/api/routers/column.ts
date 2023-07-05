@@ -15,7 +15,7 @@ export const columnRouter = createTRPCRouter({
           .nullish(),
       })
     )
-    .mutation(async ({ input, ctx }) => {
+    .query(async ({ input, ctx }) => {
       return await errorCatchTRPC(async () => {
         const { paging, cursor } = input;
         // paging
