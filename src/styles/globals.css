@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+    @font-face {
+        font-family: 'Inter';
+        src: font-url("../assets/fonts/Inter.ttf") format("truetype")
+    }
+    @font-face {
+        font-family: 'NotoSansJP';
+        src: font-url("../assets/fonts/NotoSansJP.ttf") format("truetype")
+    }
+}
+
+@layer components {
+    .bg-gradient-primary {
+        @apply bg-gradient-to-b from-primary-300 to-primary-400
+    }
+}
