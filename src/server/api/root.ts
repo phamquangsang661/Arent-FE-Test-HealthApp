@@ -1,4 +1,7 @@
-import { exampleRouter } from "@server/api/routers/example";
+import { bodyHistoryRouter } from "./routers/body-history";
+import { diaryRouter } from "./routers/diary";
+import { exerciseHistoryRouter } from "./routers/exercise-history";
+import { mealHistoryRouter } from "./routers/meal-history";
 import { createTRPCRouter } from "./trpc";
 
 /**
@@ -7,7 +10,10 @@ import { createTRPCRouter } from "./trpc";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  example: exampleRouter,
+  bodyHistory: bodyHistoryRouter,
+  diary: diaryRouter,
+  exerciseHistory: exerciseHistoryRouter,
+  mealHistory: mealHistoryRouter,
 });
 
 // export type definition of API
