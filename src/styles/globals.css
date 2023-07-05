@@ -10,11 +10,13 @@
         font-weight: 400;
         src: url("../assets/fonts/Inter.ttf") format("truetype")
     }
+
     @font-face {
         font-family: 'NotoSansJP';
         font-weight: 400;
         src: url("../assets/fonts/NotoSansJP.ttf") format("truetype")
     }
+
     @font-face {
         font-family: 'Hiragino';
         font-weight: 400;
@@ -26,4 +28,13 @@
     .bg-gradient-primary {
         @apply bg-gradient-to-b from-primary-300 to-primary-400
     }
+}
+
+.link,
+.link:hover,
+.link:active,
+.link:focus,
+.link:visited {
+    /*Your code here, like:*/
+    color: #FFF;
 }
