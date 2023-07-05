@@ -1,5 +1,9 @@
-.achievement-rate {
+/* .achievement-rate {
     background: linear-gradient(to bottom, rgba(255, 204, 33, 0.2), rgba(255, 150, 60, 0.2)), url('/images/my-page-p1.png')
+} */
+
+.increase-brightness {
+    filter: brightness(1.5);
 }
 
 .achievement-rate .graph-text-color {
@@ -9,6 +13,7 @@
 .meal-item .meal-image {
     transition: all 1s ease-in-out;
 }
+
 .meal-item:hover .meal-image {
     transform: scale(1.5);
 }

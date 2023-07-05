@@ -13,7 +13,7 @@ export const CirclePercentage = ({ percentage, circleColor, children }: CirclePe
         return isNegativeOrNaN ? 0 : isTooHigh ? 100 : +percentage;
     }, [percentage])
     return (
-        <div className="flex justify-center items-center relative">
+        <div className="flex justify-center items-center relative w-full h-full">
             <svg width={200} height={200}>
 
                 <Circle mainCircle color={circleColor} percentage={percent} />
