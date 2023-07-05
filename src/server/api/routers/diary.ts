@@ -2,6 +2,7 @@ import { z } from "zod";
 import { protectedProcedure } from "../procedure";
 import { errorCatchTRPC, returnTRPC } from "@server/libs/utils";
 import { createTRPCRouter } from "../trpc";
+import dayjs from "dayjs";
 
 export const diaryRouter = createTRPCRouter({
   getDiaries: protectedProcedure
@@ -28,6 +29,12 @@ export const diaryRouter = createTRPCRouter({
           cursor: cursor ? { id: cursor } : undefined,
           where: {
             userId,
+            createdAt: {
+              lte: dayjs().endOf("day").toISOString(), //Only start from tody
+            },
+          },
+          orderBy: {
+            createdAt: "desc",
           },
         });
         let nextCursor: typeof cursor | undefined = undefined;

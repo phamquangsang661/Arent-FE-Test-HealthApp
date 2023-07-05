@@ -1,4 +1,5 @@
 import { bodyHistoryRouter } from "./routers/body-history";
+import { columnRouter } from "./routers/column";
 import { diaryRouter } from "./routers/diary";
 import { exerciseHistoryRouter } from "./routers/exercise-history";
 import { mealHistoryRouter } from "./routers/meal-history";
@@ -14,6 +15,7 @@ export const appRouter = createTRPCRouter({
   diary: diaryRouter,
   exerciseHistory: exerciseHistoryRouter,
   mealHistory: mealHistoryRouter,
+  column: columnRouter,
 });
 
 // export type definition of API
