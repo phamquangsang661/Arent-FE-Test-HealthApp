@@ -32,6 +32,7 @@ model MealHistory {
     id        String   @id @default(uuid())
     user      User?    @relation(fields: [userId], references: [id])
     userId    String?
+    image     String
     type      String   @default("Morning") //MealHistoryEnum
     createdAt DateTime
 }
@@ -62,4 +63,17 @@ model Diary {
     userId    String?
 }
 
+model Column {
+    id        String       @id @default(uuid())
+    createdAt DateTime
+    content   String
+    tags      ColumnTags[]
+}
 
+model ColumnTags {
+    id       String  @id @default(uuid())
+    name     String
+    slug     String
+    column   Column? @relation(fields: [columnId], references: [id])
+    columnId String?
+}

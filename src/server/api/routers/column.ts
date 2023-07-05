@@ -1,14 +1,13 @@
 import { z } from "zod";
-import { protectedProcedure } from "../procedure";
+import { publicProcedure } from "../procedure";
 import { errorCatchTRPC, returnTRPC } from "@server/libs/utils";
 import { createTRPCRouter } from "../trpc";
 
-export const diaryRouter = createTRPCRouter({
-  getDiaries: protectedProcedure
+export const columnRouter = createTRPCRouter({
+  getColumns: publicProcedure
     .input(
       z.object({
         cursor: z.string().nullish(),
-        type: z.string().nullish(),
         paging: z
           .object({
             limit: z.number().min(1).max(100).nullish(),
@@ -18,28 +17,27 @@ export const diaryRouter = createTRPCRouter({
     )
     .mutation(async ({ input, ctx }) => {
       return await errorCatchTRPC(async () => {
-        const userId = ctx.session.user.id;
         const { paging, cursor } = input;
         // paging
         const limit = paging?.limit ?? 8; //default is 8
 
-        let diaries = await ctx.prisma.diary.findMany({
+        let columns = await ctx.prisma.column.findMany({
           take: limit + 1,
           cursor: cursor ? { id: cursor } : undefined,
-          where: {
-            userId,
+          include: {
+            tags: true,
           },
         });
         let nextCursor: typeof cursor | undefined = undefined;
-        if (diaries.length > limit) {
-          const nextItem = diaries.pop();
+        if (columns.length > limit) {
+          const nextItem = columns.pop();
           nextCursor = nextItem!.id;
         }
 
         return returnTRPC({
           message: "Success",
           data: {
-            diaries,
+            columns,
             nextCursor,
           },
         });
