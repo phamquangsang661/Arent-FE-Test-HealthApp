@@ -24,7 +24,9 @@ export * from "./vector/hexagon";
 //My page
 export * from "./section/myPage/index";
 //My record
-export * from "./section/myRecord/index";
+export * from "./section/myRecordPage/index";
+//Column page
+export * from "./section/columnPage/index";
 
 // Graph
 export * from "./graph/circle-percentage";

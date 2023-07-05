@@ -1,0 +1,7 @@
+.column-item .column-item-image {
+    transition: all 1s ease-in-out;
+}
+
+.column-item:hover .column-item-image {
+    transform: scale(1.5);
+}

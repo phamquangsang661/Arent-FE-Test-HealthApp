@@ -6,6 +6,7 @@
 /* Import other module CSS */
 @import './section/my-page.css';
 @import './section/my-record.css';
+@import './section/column-page.css';
 
 @layer base {
     @font-face {

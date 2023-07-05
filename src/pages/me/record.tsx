@@ -10,7 +10,7 @@ import {
 
 export default function MyRecord() {
     return (
-        <Layout title="My record" content="My record" className="flex flex-col gap-[56px] pt-[56px] pb-16">
+        <Layout title="My record" content="My record" className="flex flex-col gap-[56px] pt-[56px] pb-16  md:px-[160px]">
             <div className="flex flex-col sm:flex-row  sm:justify-between">
                 <RecordNavigationItem
                     href="#body-record"
